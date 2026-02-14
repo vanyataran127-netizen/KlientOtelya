@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование номера</title>
+    <link rel="stylesheet" href="/static/styles/book_room_styles.css">
+</head>
+<body class="booking-page">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <h1 class="booking-title">Бронирование номера: {{ room.name }}</h1>
+    <p class="booking-description">{{ room.description }}</p>
+    <p class="booking-price">Цена за ночь: {{ room.price }} ₽</p>
+
+    <form action="{{ url_for('book_room', room_id=room.id) }}" method="post" class="booking-form">
+        <label for="start_date">Дата начала:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        
+        <label for="end_date">Дата окончания:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        
+        <button type="submit" class="booking-button">Подсчитать стоимость</button>
+    </form>
+</body>
+</html>

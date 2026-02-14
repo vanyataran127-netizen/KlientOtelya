@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Гостиница{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles/base_styles.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <header>
+        <div class="logo"><a href="/">Гостиница</a></div>
+        <nav>
+                <a href="/rooms">Номера</a>
+                <a href="#footer">Контакты</a>
+        </nav>
+        <div class="auth-buttons">
+            {% if role == "user" %}
+                <a href="/profile" class="btn-small">Личный кабинет</a>
+                <a href="/logout" class="btn-small">Выход</a>
+            {% elif role == "admin" %}
+                <a href="/profile" class="btn-small">Личный кабинет</a>
+                <a href="/admin" class="btn-small">Админ-панель</a>
+                <a href="/logout" class="btn-small">Выход</a>
+            {% else %}
+                <a href="/register" class="btn-small">Регистрация</a>
+                <a href="/login" class="btn-small">Вход</a>
+            {% endif %}
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <footer id="footer">
+        <p>Контакты: +7 (953) 101-45-58 | Email: info@hotel.com</p>
+        <p>&copy; 2025 Гостиница. Все права защищены.</p>
+    </footer>
+</body>
+</html>

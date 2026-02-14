@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Гостиница{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/styles/index_styles.css">
+
+<section class="hero">
+    <div class="hero-logo">
+        <img src="/static/images/logo.jpg" alt="Логотип гостиницы">
+    </div>
+    <h1>Добро пожаловать в Гостиницу</h1>
+    <p>Уют и комфорт для вашего отдыха</p>
+    <a href="/rooms" class="btn">Забронировать сейчас</a>
+</section>
+
+<section class="gallery">
+    <h2>Наши фотографии</h2>
+    <div class="photos">
+        <img src="/static/images/hotel.jpg" alt="Фото 1">
+        <img src="/static/images/int1.jpg" alt="Фото 2">
+        <img src="/static/images/int2.jpg" alt="Фото 3">
+    </div>
+</section>
+
+<section class="features" id="about">
+    <h2>Наши услуги</h2>
+    <div class="feature">
+        <h3>Комфортабельные номера</h3>
+        <p>Предлагаем уютные и современные номера для комфортного проживания.</p>
+    </div>
+    <div class="feature">
+        <h3>Ресторан</h3>
+        <p>В нашем ресторане вас ждут вкусные блюда от лучших поваров.</p>
+    </div>
+    <div class="feature">
+        <h3>Бассейн и SPA</h3>
+        <p>Расслабьтесь в нашем бассейне и спа-комплексе.</p>
+    </div>
+</section>
+{% endblock %}

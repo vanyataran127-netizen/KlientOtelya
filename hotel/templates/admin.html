@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="/static/styles/profile_styles.css">
+</head>
+<body class="profile-page">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <h1>Панель управления бронированиями</h1>
+    <h2>Список бронирований:</h2>
+
+    {% if bookings %}
+        <table>
+                <tr>
+                    <th>Номер</th>
+                    <th>ID клиента</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
+                    <th>Общая стоимость</th>
+                    <th>Действия</th>
+                </tr>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.room.room_name }}</td>
+                        <td>{{ booking.user_id }}</td>
+                        <td>{{ booking.start_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ booking.end_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ booking.total_amount }} ₽</td>
+                        <td>
+                            <form action="/delete_booking/{{ booking.id }}" method="POST"> <!-- URL для удаления -->
+                                <button type="submit" class="delete-button">Удалить</button> <!-- Кнопка удаления -->
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Список бронирований пуст</p>
+    {% endif %}
+</body>
+</html>
